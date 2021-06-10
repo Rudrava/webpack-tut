@@ -1,23 +1,13 @@
 const path = require("path");
 
-// ::PLUGINS::
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    main: "./src/index.js",
+    vendor: "./src/vendor.js",
+  },
 
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        // after adding sass the work flow is written below
-        use: [
-          "style-loader", // 3 injects style in dom
-          "css-loader", // 2 converts css to commonjs
-          "sass-loader", // 1 converts sass to css
-        ],
-      },
-
       {
         test: /\.html$/i,
         use: {
@@ -36,10 +26,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "webpack tut",
-      template: "src/template.html",
-    }),
-  ],
 };
